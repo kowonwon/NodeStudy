@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>  
+  <script>
+    // FetchAPI 두 가지 사용법
+    // JSON 가상 데이터 : https://koreanjson.com, https://jsonplaceholder.typicode.com
+
+    document.addEventListener("DOMContentLoaded", function() {
+      let btnRead1 = document.querySelector("#btnRead1");
+      btnRead1.addEventListener("click", function(e) {
+        // fetch 함수가 반환하는 Promise를 이용해 비동기 처리하기
+        fetch("https://koreanjson.com/posts")
+        .then(res => res.json())
+        .then(users => console.log(users));
+      });
+
+      let btnRead2 = document.querySelector("#btnRead2");
+      btnRead2.addEventListener("click", async function(e) {
+        // async를 이용해 함수를 정의하고 그 안에서 await을 사용해 비동기 처리하기
+        const res = await fetch("https://koreanjson.com/posts");
+        const users = await res.json();
+        console.log(users);
+      });
+
+      let btnAdd = document.querySelector("#btnAdd");
+      btnAdd.addEventListener("click", function(e) {
+        // fetch() 함수의 두 번째 인수는 다음과 같이 객체를 이용해 요청 방식과
+        // 서버로 보낼 요청 본문 데이터 header 정보 등을 설정할 수 있다. 
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+          method: "post",
+          body: JSON.stringify({
+              title: "안녕하세요",
+              body: "FeachAPI를 이용한 ajax 글쓰기",
+              userId: 1,
+            }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((res) => res.json())
+          .then(users => console.log(users));
+      });
+    });    
+  </script>
+</head>
+<body>
+  <h2>FetchAPI를 활용한 ajax 통신</h2>
+  <button id="btnRead1">데이터 읽어오기</button><br>
+  <button id="btnRead2">데이터 읽어오기</button><br>
+  <button id="btnAdd">데이터 등록하기</button>
+</body>
+</html>

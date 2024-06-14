@@ -1,0 +1,17 @@
+<script>
+  function order() {
+    console.log("음식을 주문 받음");
+  }
+  function make(callback) {
+    setTimeout(function() {
+      console.log("음식 조리 중...");
+      callback();
+    }, 3000);
+  }
+  function complete() {
+    console.log("조리완료");
+  }
+
+  order();
+  make(complete);
+</script>

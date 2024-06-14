@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 배열 구조 분해 할당
+    // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+    /* ECMAScript 2015에서 자료의 구조를 분해해서 변수에 할당하는 기능이 추가되었는데
+     * 이를 구조 분해 할당 또는 디스트럭쳐링(Distructuring)이라고 한다. 
+     **/
+    const members = ["홍길동", "임꺽정", "캡틴", "어벤저스"]
+    
+    // 기존의 index를 이용한 배열 요소 접근 - 요소가 많다면 코드는? 
+    //let hong = member[0];    
+    //let leem = member[1];
+
+    // 왼쪽에 변수를 오른쪽에 분해할 자료를 지정
+    let [hong, leem] = members;    
+    console.log(hong, leem);
+
+    /* 변수에 기본 값을 할당하면 분해한 값이 undefined 일 때 그 값을 대체하며
+     * 다음과 같이 필요하지 않은 값은 일부 무시하여 변수에 할당할 수 있다.
+     **/
+    let [h1="hong", , captain, avengers] = members;
+    console.log(h1, captain, avengers);
+
+    // 나머지 변수(Rest Variable)를 이용해 구조 분해 할당
+    let[h2, ...mems] = members;
+    console.log(h2, mems);
+
+    // 구조 분해 할당을 이용해 변수 값 교환하기
+    let x = 10, y = 20;
+    [y, x] = [x, y]
+    console.log(x, y);
+  </script>
+</head>
+<body>
+</body>
+</html>

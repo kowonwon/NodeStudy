@@ -1,0 +1,32 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+      let circle10 = () => {
+        document.write(`반지름이 10인 원의 넓이 : ${10 * 10 * 3.14}<br>`);
+      };
+
+      let good = () => document.write(`good<br>`);
+
+      circle10();
+      good();
+
+      // 매개변수가 있는 함수
+      let circle0 = radius => radius * radius * 3.14;
+      let circle100 = function(radius) {
+        radius * radius * 3.14;
+      }
+
+      document.write(`매개변수 1개의 화살표 함수 : ${circle0(10)}`);
+
+      // 매개변수가 2개 이상인 함수
+      let rectangle = (width, height) => width * height;
+      document.write(`매개변수 2개인 화살표 함수 : ${rectangle(10, 20)}<br>`);
+
+      // 매개변수에 기본 값이 있는 함수
+      let triagle = (width, height=5) => width * height / 2;
+
+      document.write(`매개변수에 기본 값이 있는 함수 : ${triagle(1)}<br>`);
+    </script>
+  </body>
+</html>

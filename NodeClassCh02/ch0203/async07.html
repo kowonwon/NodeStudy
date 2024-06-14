@@ -1,0 +1,21 @@
+<script>
+  function order() {
+    console.log("음식을 주문 받음");
+  }
+  function make() {
+    return new Promise((resolve, reject) => {
+      setTimeout(function() {
+        resolve("음식 조리 중...");
+      }, 3000);
+    });
+  }
+  function complete() {
+    console.log("조리완료");
+  }
+
+  (async function init() {
+    order();
+    await make().then(console.log);
+    complete();
+  })();
+</script>

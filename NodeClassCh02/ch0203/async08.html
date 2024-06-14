@@ -1,0 +1,22 @@
+<script>
+  async function order(menu) {
+    console.log(`${menu}를 주문 받음.`);
+    return menu;
+  }
+  async function make(menu) {
+    console.log(`${menu}를 조리중...`);
+    return menu;
+  }
+  async function complete(menu) {
+    return `${menu} 조리완료`;
+  }
+
+  (async function init() {
+    const step1 = await order("갈비탕");
+    const step2 = await make(step1);
+    complete(step2).then(console.log);
+  })()
+  .then(() => {
+    console.log("주문 처리 완료");
+  });
+</script>

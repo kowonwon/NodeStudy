@@ -1,0 +1,17 @@
+<script>
+  const members = ["홍길동", "임꺽정", "캡틴", "어벤저스"];
+  // let hong = members[0];
+  // let leem = members[1];
+  let [hong, leem] = members;
+  console.log(hong, leem);
+
+  let [h1="hong", , captain, avengers] = members;
+  console.log(h1, captain, avengers);
+
+  let [h2, ...mems] = members;
+  console.log(h2, mems);
+
+  let x = 10, y = 20;
+  [y, x] = [x, y];
+  console.log(x, y);
+</script>

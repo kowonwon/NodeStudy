@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>  
+  <script type="module">
+    /* 브라우저(HTML) 에서도 ESM 방식의 모듈을 사용할 수 있다.
+     * .js와 .mjs 확장자를 가진 자바스크립트 파일을 import 할 수 있다.     
+     **/
+    import { PI, helloUser, helloTest } from './module/myModule02_ESM.js';
+    //import { PI, helloUser, helloTest } from './module/myModule03_ESM.mjs';
+
+    console.log(helloTest('임꺽정'));
+    console.log("module PI : ", PI);
+  </script>
+  <script>
+    // 아래는 오류가 발생 - script 태그 별로 import를 해야함
+    // console.log("PI : ", PI); 
+  </script>
+</head>
+<body>
+</body>
+</html>

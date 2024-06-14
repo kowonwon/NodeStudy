@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    /* 전개구문(Spread Syntax)은 말 그대로 "값을 펼쳐 주는" 구문으로 배열과 같이
+     * 값이 여러 개인 자료를 함수의 매개 변수로 한꺼번에 넘기거나 배열을 하나로
+     * 합칠 수도 있는데 이렇게 여러 개로 이루어진 자료를 한 번에 적용할 때 유용하다.
+     * https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+     **/
+    // 배열 리터럴 전개 - 배열 전개를 이용해 배열 앞 뒤에 데이터를 추가할 수 있다.
+    const l = [1, 2, 3]
+    console.log(...l)   
+    const l2 = [9, 8, ...l];
+    console.log(l2);
+
+    // 함수 호출에서 매개 변수로 배열 전개 - apply() 함수 대체
+    function myFunc(x, y, z) {
+      return x + y + z;
+    }
+    const nums = [10, 20, 30]
+    console.log(myFunc.apply(null, nums));
+    console.log(myFunc(...nums));
+
+    // 객체 리터럴 전개 - ECMAScript 2018에서 추가
+    let obj =  {
+      name: '홍길동',
+      age: 20,
+      grade: 4
+    }    
+    let objClone = { ...obj }
+    console.log(objClone);
+
+    // 생성자 함수 호출에서 배열 전개
+    let dateArr = [1970, 9, 21];
+    const d1 = new Date(dateArr);
+    console.log(d1);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "홍길동",
+    "major": "컴퓨터 공학",
+    "grade": 3,
+    "gender": "male"
+  },
+  {
+    "name": "어머나",
+    "major": "경제학",
+    "grade": 2,
+    "gender": "female"
+  },
+  {
+    "name": "왕호감",
+    "major": "전자 공학",
+    "grade": 4,
+    "gender": "male"
+  } 
+]

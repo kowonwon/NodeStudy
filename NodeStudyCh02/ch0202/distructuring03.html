@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>  
+    // 함수의 매개변수로 전달된 객체의 구조 분해 할당
+    // 기본 값을 가지는 매개변수를 가진 함수 정의
+    function showMember(name='이름 없음', age=20, hobby=["독서"]) {
+      console.log(`이름 : ${name}, 나이 : ${age}, 취미 : ${[hobby[0], hobby[1], hobby[2]]}`);
+    }   
+
+    // 인수를 모두 지정하면 기본 값은 사용되지 않고 인수가 없으면 매개변수는 모두 기본 값으로 설정됨
+    showMember("홍길동", 23, ["여행", "게임"]);
+    showMember();
+
+    // 인수의 순서가 잘 못 지정될 수 있거나 특정 값만 지정하려면 undefined를 사용해 위치를 맞춰야 함
+    showMember("홍길동", ["여행", "게임"], 23);
+    showMember(undefined, 30);
+    
+    // 함수의 매개변수로 객체를 전달하고 함수에서 객체를 구조 분해해서 변수에 할당
+    function showMember1({name='이름 없음', age=20, hobby=["독서"]}) {
+      console.log(`이름 : ${name}, 나이 : ${age}, 취미 : ${[hobby[0], hobby[1]]}`);
+    }
+
+    // 인수의 순서가 바뀌거나, 누락되어도 객체의 프로퍼티를 사용하므로 매개변수에 잘 전달됨
+    showMember1({name: "강감찬", hobby: ["수영", "스키"]});
+    showMember1({});
+    //showMember1(); // 여기서 오류
+
+    // 빈 객체인 {}를 인수 전체의 기본 값으로 설정하면 인수가 없는 호출의 오류를 해결할 수 있음
+    function showMember2({name='이름 없음', age=20, hobby=["독서"]} = {}) {
+      console.log(`이름 : ${name}, 나이 : ${age}, 성별 : ${[hobby[0], hobby[1], hobby[2]]}`);
+    }
+    showMember2();    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

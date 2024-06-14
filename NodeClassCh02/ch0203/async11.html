@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    const result = fetch("data/students.json");
+    console.log(result);
+    result
+      .then(res => res.json())
+      .then(sList => {
+        let output = "";
+        sList.forEach(student => {
+          output += `
+            <h2>${student.name}</h2>
+            <ul>
+              <li>학년 : ${student.grade}</li>
+              <li>전공 : ${student.major}</li>
+            </ul>
+          `
+        });
+        document.querySelector("#result").innerHTML = output;
+      })
+      .catch(err => console.log(err))
+      .finally(() => {console.log("프로그램 종료")});
+  </script>
+</head>
+<body>
+  <div id="result"></div>
+</body>
+</html>

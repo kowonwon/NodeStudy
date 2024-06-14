@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // async/await 방식
+    // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function 
+    function order() {
+      console.log("음식을 주문 받음");
+    }
+    function make() {      
+      return new Promise((resolve, reject) => {
+        setTimeout(function() {
+          resolve("음식을 조리 중...");        
+        }, 3000);
+      });
+    }
+    function complete() {
+      console.log("조리 완료");
+    }
+
+    /* async/await 방식은 Promise를 쉽게 사용할 수 있도록 ECMAScript 2017에서
+     * 추가된 기능이다. 함수를 선언할 때 다음과 같이 함수 앞에 async 예약어를 
+     * 사용하면 그 함수 안에서 await 예약어를 사용해서 Promise를 반환하는 함수가
+     * 작업을 완료할 때까지 기다렸다가 다음 작업을 실행할 수 있도록 할 수 있다.
+     **/   
+    async function init() {
+      order();
+      await make().then(console.log);
+      complete();
+    };
+    init();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

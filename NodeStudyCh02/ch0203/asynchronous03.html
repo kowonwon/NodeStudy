@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 콜백 함수(Callback function) 방식
+    function order() {
+      console.log("음식을 주문 받음");
+    }
+    function make(callback) {
+      setTimeout(function() {
+        console.log("음식을 조리 중...");
+        callback();
+      }, 3000);
+    }
+    function complete() {
+      console.log("조리 완료");
+    }
+    /* 자바스크립트에서는 여러 함수를 작성하여 실행하게 되는데 실행 시간이 다른 함수를
+     * 원하는 처리 순서에 따라서 실행되도록 프로그래밍 하는 것을 비동기 처리라고 한다.
+     * 예를 들어 서버에서 자료를 받아 오거나 DB에서 자료를 받아와서 출력하는 프로그램을
+     * 작성한다면 서버 또는 DB에서 자료를 받아 오는 시간이 많이 소요된다 하더라도 자료를
+     * 받아 오는 함수의 실행이 완료된 후에 필요한 데이터를 출력할 수 있기 때문에 자료를
+     * 모두 받아 올 때까지 기다렸다가 화면에 출력하는 함수가 실행되어야 한다. 그러므로
+     * 이런 경우에 비동기 처리를 해야 한다.
+     * 자바스크립트에서 사용하는 비동기 처리 방식에는 다음과 같은 3가지 방식이 있다.
+     * 콜백 함수(Callback function), 프로미스(Promise), async/await 방식을 사용한다.
+     * 콜백 함수 방식은 전통적으로 사용되던 비동기 처리 방식이며 프로미스(Promise) 방식은
+     * 콜백 함수의 단점인 콜백 지옥(Callback Hell)을 보완하고자 ECMAScript 2015(ES6)에서
+     * 도입된 방식이며 async/await 방식은 프로미스를 보완하기 위해서 ECMAScript 2017에서
+     * 도입된 방식이다.
+     **/
+    order();
+    make(complete);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

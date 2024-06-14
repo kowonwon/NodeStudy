@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title> 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>   
+  <script>
+    // Axios 라이브러리를 이용한 Ajax 통신 구현하기
+    // Axios는 node.js와 브라우저를 위한 Promise 기반의 HTTP 비동기 통신 라이브러리로
+    // Fetch API와 기본 원리는 같지만 사용이 간편하고 다양한 추가 기능을 제공한다.   
+    // https://axios-http.com/kr/docs/intro
+    //const result = axios('data/students.json?id=test');
+    //const result = axios('data/students.json', {method: "get", params: {id: "test"}});
+    const result = axios.get('data/students.json', {params: {id: "test"}});
+
+    // axios의 함수는 Primise 객체를 반환
+    console.log(result);
+    result
+      .then(res => { 
+        // JSON 응답 데이터를 객체로 자동 변환해 준다.
+        console.log(res);
+        let output = "";
+        res.data.forEach(student => { // 화면에 데이터 출력
+          output += `
+            <h2>${student.name}</h2>
+            <ul>
+              <li>학년 : ${student.grade}</li>
+              <li>전공 : ${student.major}</li>
+            </ul>
+          `;
+        });
+        document.querySelector("#result").innerHTML = output;
+      });
+  </script>
+</head>
+<body>
+  <div id="result"></div>  
+</body>
+</html>

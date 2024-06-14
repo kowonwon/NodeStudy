@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 비동기 방식 처리를 해야 한다면?
+    function order() {
+      console.log("음식을 주문 받음");
+    }
+    function make() {
+      setTimeout(function() {
+        console.log("음식 조리 중...");
+      }, 3000);
+    }
+    function complete() {
+      console.log("조리 완료");
+    }
+
+    /* 자바스크립트는 한 번에 하나만 처리하는 싱글 스레드(Single Thread) 방식으로
+     * 실행되는 프로그래밍 언어로 시간이 많이 걸리는 작업을 별도로 처리해 싱글 스레드의
+     * 단점을 보완하고 있다. 예를 들어 서버에서 자료를 받아 오거나 DB나 파일에서 자료를
+     * 읽어오는 경우에 해당 작업이 끝날 때 까지 대기하지 않고 다음 작업이 바로 실행되도록
+     * 설계되어 있다. 하지만 상황에 따라서 이러한 실행 순서를 조정해서 호출되는 순서 또는
+     * 원하는 순서대로 실행해야 한다면 어떻게 해야 할까?
+     **/
+    order();
+    make();
+    complete();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

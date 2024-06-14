@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>   
+  <script>
+    // 동기 방식 처리
+    function run01() {
+      console.log("run01");
+    }
+    function run02() {      
+      console.log("run02");
+    }
+    function run03() {
+      console.log("run03");
+    }
+
+    /* 자바스크립트는 기본적으로 소스 코드가 작성된 순서대로 처리하는데 
+     * 이런 방식을 동기 처리 방식이라고 한다. 동기 처리 방식은 다음과 같이
+     * 함수가 호출되는 순서대로 실행되어 앞의 함수가 실행이 완료된 후에 
+     * 다음 함수가 실행되는 처리 방식으로 싱글 스레드 방식이라고도 한다.
+     **/
+    run01();
+    run02();
+    run03();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

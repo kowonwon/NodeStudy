@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // async/await 방식    
+    /* 함수를 선언할 때 함수 앞에 async 예약어를 붙이면
+     * 이 함수는 실행한 결과 값으로 Promise 객체를 반환 한다. 
+     **/
+    async function order(menu) {
+      console.log(`${menu}을 주문 받음`);
+      return menu;
+    }
+    async function make(menu) {
+      console.log(`${menu}을 조리 중...`);
+      return menu;
+    }
+    async function complete(menu) {      
+      return `${menu} 조리 완료`;
+    }    
+    /* 다음과 같이 함수 앞에 async 예약어를 사용하면 이 함수 안에서 Promise를
+     * 반환하는 함수를 호출할 때 await 예약어를 사용해 비동기 처리를 할 수 있다.
+     **/
+    (async function init() {
+      /* 위에서 order() 함수를 정의할 때 함수 앞에 async를 붙였기 때문에 아래와 같이
+       * order() 함수를 호출하면 Promise 객체가 반환된다. 또한 Promise 객체 앞에 await을
+       * 사용했기 때문에 이 함수가 실행을 완료할 때까지 기다렸다가 다음 작업을 실행한다.
+       * 아래와 같이 Promise 객체 앞에 await이 붙으면 Promise를 반환하는 것이 아니라 
+       * Promise 안에서 호출한 resolve() 함수의 인수로 전달한 데이터가 반환된다.       
+       **/
+      const step1 = await order('갈비탕');
+      const step2 = await make(step1);
+      complete(step2).then(console.log);  
+    })().
+      then(() => { 
+        console.log("주문 처리 완료"); 
+      }); 
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,35 @@
+<script>
+  // Promise 방식을 async/await으로 변경
+  // Promise 객체를 만드는 코드 - 제작 코드
+  const incrementNum = (n, ms) => {
+    return new Promise((resolve, reject) => {
+      console.log(n);
+      // 조건 num <= 5이면 성공 5초과면 실패
+      setTimeout(() => {
+        const num = n + 1;
+        if(num > 5) {
+          const err = new Error();
+          err.name = "num의 값이 5를 초과함";
+          reject(err);
+          return;
+        }
+        resolve(num);
+      }, ms);
+    }); 
+  }
+
+  async function increment() {
+    const step1 = await incrementNum(1, 1000);
+    const step2 = await incrementNum(step1, 2000);
+    const step3 = await incrementNum(step2, 500);
+    const step4 = await incrementNum(step3, 1000);
+    const step5 = await incrementNum(step4, 500);
+    const step6 = await incrementNum(step5, 100);
+    const step7 = await incrementNum(step6, 500);
+    return step7;
+  }
+
+  increment()
+    .then(console.log)
+    .catch(console.log)
+</script>

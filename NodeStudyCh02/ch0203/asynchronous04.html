@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 콜백 지옥(Callback Hell)
+    function incrementNum(n, callback) {      
+      console.log(n);
+      setTimeout(() => {
+        const num = n + 1;       
+        callback(num);
+      }, 500);
+    }
+    /* 콜백 함수 방식으로 비동기 처리를 하면 비동기 작업이 많아질수록 다음과 같이
+     * 콜백 함수가 계속해서 중첩해 들어가면서 코드가 복잡해지고 가독성이 떨어진다.
+     * 또한 오류가 발생했을 때 오류를 찾기가 어려워지는데 이렇게 계속해서 콜백
+     * 함수가 사용되는 것을 콜백 지옥(Callback Hell)이라고 한다.
+     **/
+    incrementNum(1, n => {
+      incrementNum(n, n => {
+        incrementNum(n, n => {
+          incrementNum(n, n => {
+            incrementNum(n, n => {
+              incrementNum(n, n => {
+                incrementNum(n, n => {
+                  incrementNum(n, n => {
+                    incrementNum(n, n => {                      
+                      console.log('작업 완료');                      
+                    });
+                  });    
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

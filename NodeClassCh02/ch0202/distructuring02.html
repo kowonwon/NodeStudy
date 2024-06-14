@@ -1,0 +1,24 @@
+<script>
+  const member = {name: "홍길동", age: 24};
+  let {name, age} = member;
+  console.log(name, age);
+  let {name: userName, age: userAge} = member;
+  console.log(userName, userAge);
+
+  const student = {
+    sName: "어머나",
+    score: {
+      math: 85,
+      korean: 87
+    },
+    hobby: ["독서", "영화감상"]
+  };
+
+  let {
+    sName,
+    grade = 3,
+    score: {math, histroy=70},
+    hobby: [h1]
+    } = student;
+    console.log(sName, grade, math, history, h1);
+</script>

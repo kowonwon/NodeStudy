@@ -1,0 +1,29 @@
+<script>
+  function incrementNum(n, callback) {
+    console.log(n);
+    setTimeout(() => {
+      const num = n + 1;
+      callback(num);
+    }, 500);
+  }
+
+  incrementNum(1, n => {
+    incrementNum(n, n => {
+      incrementNum(n, n => {
+        incrementNum(n, n => {
+          incrementNum(n, n => {
+            incrementNum(n, n => {
+              incrementNum(n, n => {
+                incrementNum(n, n => {
+                  incrementNum(n, n => {
+                    console.log('작업 완료');
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+</script>

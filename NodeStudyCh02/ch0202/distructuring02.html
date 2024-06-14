@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 객체의 구조 분해 할당
+    const member = { name: '홍길동', age: 24 }
+    
+    // memeber 객체에서 프로퍼티 값을 분해해서 name과 age 변수에 할당
+    let { name, age } = member;
+    console.log(name, age);
+
+    // 프로퍼티 이름에 새로운 변수 이름 사용
+    let { name: userName, age: userAge } = member;
+    console.log(userName, userAge);
+
+    const student = {
+      sName: '어머나',
+      score : {
+        math: 85,
+        korean: 87
+      },
+      hobby: ["독서", "영화감상"]      
+    }
+
+    // 객체의 프로퍼티가 없으면 값은 undefined 이며 이 때는 기본 값이 적용됨
+    let { 
+      sName,
+      grade = 3, 
+      score: { math, history = 70 },
+      hobby: [h1]      
+    } = student;    
+    console.log(sName, grade, math, history, h1);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

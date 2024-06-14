@@ -1,0 +1,21 @@
+<script>
+  // ECMA Script 2015 - ES6+
+  // 콜백지옥 해결 - Promise
+  // Promise 객체를 만드는 코드 - 제작코드(Producing code)
+  const isLike = false;
+  const order = new Promise((resolve, reject) => {
+    if(isLike) { // 성공
+      resolve("음식을 주문함");
+    }else { // 실패
+      reject("음식을 주문하지 못함");
+    }
+  });
+  // Promise를 사용하는 코드 - 소비코드(Consuming code)
+  order.then(result => {
+    console.log(result);
+    return "- " + "맛나게 해주세요";
+  })
+  .then(result => console.log(result))
+  .catch(err => console.log(err))
+  .finally(() => console.log("종료"));
+</script>

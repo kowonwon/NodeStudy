@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="jquery/jquery-3.2.1.min.js"></script>
+  <script>
+    // XMLHttpRequest를 이용한 Ajax 통신
+    let xhr = new XMLHttpRequest();
+    xhr.open("get", "data/students.json");
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+      console.log("xhr 상태 : " + xhr.readyState);
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr);
+        console.log(xhr.response);
+        console.log(JSON.parse(xhr.responseText));
+      }
+    }
+
+    // jquery를 이용한 Ajax 통신
+    $.ajax({
+      url: "data/students.json",
+      type: "get",
+      dataType: "json",
+      success: function(resData) {
+        console.log(resData);
+      },
+      error: function(xhr, statusText, err) {
+        console.log(xhr);
+      }
+    })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

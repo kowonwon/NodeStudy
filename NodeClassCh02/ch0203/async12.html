@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let btnRead1 = document.querySelector("#btnRead1");
+    btnRead1.addEventListener("click", function() {
+      // fetch 함수가 반환하는 Promise를 이용해 비동기 처리하기
+      fetch("https://koreanjson.com/posts")
+        .then(res => res.json())
+        .then(posts => {
+          posts.forEach(post => {
+            console.log(post.id, post.title);
+          });
+        })
+    });
+
+    let btnRead2 = document.querySelector("#btnRead2");
+    btnRead2.addEventListener("click", async function() {
+      // async를 이용해서 함수를 정의 그 안에서 fetch 함수 앞에 await를 적용해 비동기 처리하기
+      const res = await fetch("https://koreanjson.com/posts");
+      const posts = await res.json();
+      console.log(posts);
+    });
+
+    let btnAdd = document.querySelector("#btnAdd");
+    btnAdd.addEventListener("click", function() {
+      // fetch 함수를 이용해 데이터 추가할 때 필요한 옵션 지정하는 방법
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "post",
+        body: JSON.stringify({
+          title: "안녕하세요",
+          body: "Fetch API를 이용한 Ajax 글쓰기",
+          userId: 1,
+        }),
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+        }
+      })
+        .then(res => res.json())
+        .then(posts => console.log(posts));
+    });
+  });
+</script>
+<body>
+  <h2>Fetch API를 활용한 ajax 통신</h2>
+  <button id="btnRead1">데이터 읽어오기1</button>
+  <button id="btnRead2">데이터 읽어오기2</button>
+  <button id="btnAdd">데이터 등록하기</button>
+</body>
+</html>

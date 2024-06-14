@@ -1,0 +1,20 @@
+<script>
+  function showMember(name="이름 없음", age=20, hobby=["독서"]) {
+    console.log(`이름 : ${name}, 나이 : ${age}, 취미 : ${[hobby[0], hobby[1], hobby[2]]}`);
+  }
+  showMember("홍길동", 23, ["여행", "게임"]);
+  showMember();
+
+  function showMember1({name="이름 없음", age=20, hobby=["독서"]}) {
+    console.log(`이름 : ${name}, 나이 : ${age}, 취미 : ${[hobby[0], hobby[1], hobby[2]]}`);
+  }
+
+  showMember1({name: "강감찬", hobby: ["수영", "스키"]});
+  showMember1({});
+  //showMember1();
+
+  function showMember2({name="이름 없음", age=20, hobby=["독서"]} = {}) {
+    console.log(`이름 : ${name}, 나이 : ${age}, 취미 : ${[hobby[0], hobby[1], hobby[2]]}`);
+  }
+  showMember2();
+</script>

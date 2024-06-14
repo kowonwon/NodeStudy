@@ -1,0 +1,31 @@
+<script>
+  const l = [1, 2, 3];
+  console.log(...l);
+  const l2 = [9, 8, ...l];
+  console.log(l2);
+
+  function myFunc(x, y, z) {
+    return x + y + z;
+  }
+  const nums = [10, 20, 30];
+  console.log(myFunc(...nums))
+  console.log(myFunc.apply(1, nums));
+
+  // 객체 전개구문 ECMA2018에서 추가됨
+  let obj = {
+    name: "홍길동",
+    age: "20",
+    garde: 4
+  }
+
+  let objClone = {...obj};
+  objClone.grade = 1;
+  console.log(obj);
+  console.log(objClone);
+
+  let dateArr = [1970, 9, 21];
+  const d1 = new Date(1970, 9, 21);
+  const d2 = new Date(dateArr);
+  console.log(d1);
+  console.log(d2);
+</script>

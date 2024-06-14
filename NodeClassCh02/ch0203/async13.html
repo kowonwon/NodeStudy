@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Axios 라이브러리를 이용한 Ajax 통신
+    // const result = axios("data/students.json");
+    const result = axios.get("data/students.json", {params: {id: "test"}});
+    console.log(result);
+    result
+      .then(res => {
+        console.log(res.data);
+        let output = "";
+        res.data.forEach(student => {
+          output += `
+            <h2>${student.name}</h2>
+            <ul>
+              <li>학년 : ${student.grade}</li>
+              <li>전공 : ${student.major}</li>
+            </ul>
+          `
+        });
+        document.querySelector("#result").innerHTML = output;
+      })
+      .catch(err => console.log(err))
+      .finally(() => {console.log("프로그램 종료")});
+  </script>
+</head>
+<body>
+  <div id="result"></div>
+</body>
+</html>

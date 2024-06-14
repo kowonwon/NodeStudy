@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<script>
+  // Axios 라이브러리 두 가지 사용방법
+  document.addEventListener('DOMContentLoaded', function() {
+    let btnRead1 = document.querySelector("#btnRead1");
+    btnRead1.addEventListener("click", function() {
+      // axios 객체의 함수가 반환하는 Promise를 이용해 비동기 처리하기
+      axios.get("https://koreanjson.com/posts")
+        .then(res => {
+          res.data.forEach(post => {
+            console.log(post.title);
+          })
+        })
+        .catch(err => console.log(err));
+    });
+
+    let btnRead2 = document.querySelector("#btnRead2");
+    btnRead2.addEventListener("click", async function() {
+      // async를 이용해서 함수를 정의 그 안에서 axios 함수 앞에 await를 적용해 비동기 처리하기
+      try {
+        const res = await axios("https://koreanjson.com/posts");
+        console.log(res.data);
+      } catch(err) {
+        console.log(err);
+      }
+    });
+
+    let btnAdd = document.querySelector("#btnAdd");
+    btnAdd.addEventListener("click", function() {
+      // axios 함수를 이용해 데이터 추가할 때 필요한 옵션 지정하는 방법
+      axios("https://jsonplaceholder.typicode.com/posts", {
+        method: "post",
+        data: {
+          title: "안녕하세요",
+          body: "Fetch API를 이용한 Ajax 글쓰기",
+          userId: 1,
+        },
+        headers: {
+          "content-type": "application/json; charset=UTF-8",
+        }
+      })
+        .then(res => {
+        //console.log("결과 : " + res.data)
+        let obj = {id: "midas", toString: function() {return this.id}}
+        console.log("객체 " + obj);
+        })
+        .catch(err => console.log(err));
+    });
+  });
+</script>
+<body>
+  <h2>Fetch API를 활용한 ajax 통신</h2>
+  <button id="btnRead1">데이터 읽어오기1</button>
+  <button id="btnRead2">데이터 읽어오기2</button>
+  <button id="btnAdd">데이터 등록하기</button>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>  
+  <script>
+    // FetchAPI를 이용한 Ajax 통신 구현하기
+    // 콜백 기반의 XMLHttpRequest 객체를 대체하기 위해 ECMAScript2015에서
+    // 새로 도입된 전역 메서드로 콜백 방식을 개선한 프로미스 기반의 메서드 이다.    
+    // https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch
+    // const result = fetch('data/students.json', { method: "post" 
+    //                        body: JSON.stringify({ id: 'midas', pass: '1234' })});
+    const result = fetch('data/students.json');
+    
+    // fetch() 함수는 Primise 객체를 반환
+    console.log(result);
+    result
+      .then(res => res.json())  // json 데이터를 객체로 변환
+      .then(sList => {          // 화면에 데이터 출력
+        // console.log(sList);
+        let output = "";
+        sList.forEach(student => {
+          output += `
+            <h2>${student.name}</h2>
+            <ul>
+              <li>학년 : ${student.grade}</li>
+              <li>전공 : ${student.major}</li>
+            </ul>
+          `;
+        });
+
+        document.querySelector("#result").innerHTML = output;
+      });
+  </script>
+</head>
+<body>
+  <div id="result"></div>  
+</body>
+</html>

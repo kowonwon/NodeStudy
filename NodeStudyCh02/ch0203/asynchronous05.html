@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // Promise 방식
+    /* Promise 방식은 비동기 처리에서 콜백 지옥을 만들지 않기 위해서 ECMAScript
+     * 2015에서 도입된 기능이다. Promise 객체와 콜백 함수를 사용해 실행 순서를
+     * 제어하는 방식으로 어떤 작업이 성공했을 때 실행할 콜백 함수와 실패 했을 때
+     * 실행할 콜백 함수를 등록해 처리하는 방식으로 비동기로 처리해야 할 작업이
+     * 많아져도 Promise를 사용하면 코드의 깊이가 깊어지는 현상을 방지할 수 있다.
+     * https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise
+     **/
+    // Promise 객체를 만드는 코드 - 제작 코드(Producing code)라고 함
+    const isLike = false;
+    const order = new Promise((resolve, reject) => {
+      if(isLike) { // 작업이 성공할 때는 resolve() 함수 호출 
+        // resolve() 함수의 인수는 소비 코드의 then() 메서드의 콜백 함수로 전달됨
+        resolve('음식을 주문함');
+
+      } else { // 작업이 실패할 때는 reject() 함수 호출
+        // reject() 함수의 인수는 소비 코드로 catch() 메서드의 콜백 함수로 전달됨
+        reject('음식을 주문하지 않음');
+      }
+    });
+
+    // Promise를 사용하는 코드 - 소비 코드(Consuming code)라고 함
+    order
+      .then(result => { 
+          console.log(result); 
+          return "- " + '맛나게 해주세요'; 
+      })
+      // 추가적으로 다른 작업이 필요할 때 연속해서 then() 메서드를 호출
+      .then(result => console.log(result)) 
+      .catch(err => console.log(err))
+      // 성공과 실패에 상관없이 실행되는 finally() 메서드 - 생략 가능
+      .finally(() => console.log("종료"));
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
