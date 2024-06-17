@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #formList > li {
+      padding: 3px; margin: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>REST(Representational State Transfer) API 요청</h1>  
+  <div id="result"></div>
+  <ul id="formList">
+    <li>
+      <h3>GET : Comment 리스트 요청</h3>
+      <form id="commentListForm">
+        page-num : <input type="text" name="page-num" id="listFormPageNum" value="3"><br>
+        keyword : <input type="text" name="keyword" id="listFormKeyword" value="REST API"><br>
+        <input type="submit" value="리스트 요청">
+      </form>
+    </li>
+    <li>
+      <h3>GET : Comment 조회 요청</h3>
+      <form id="commentForm">
+        no : <input type="text" name="no" id="formNo" value="10"><br>
+        pageNum : <input type="text" name="pageNum" id="formPageNum" value="3"><br>
+        <input type="submit" value="조회 요청">
+      </form>
+    </li>
+    <li>
+      <h3>POST : Comment 쓰기 요청</h3>
+      <form id="writeForm">
+        title : <input type="text" name="title" id="formTitle" value="RESTAPI"><br>
+        writer : <input type="text" name="writer" id="formWriter" value="admin"><br>
+        content : <textarea name="content" id="formContent">REST는 자원을 이름으로</textarea><br>
+        <input type="submit" value="쓰기 요청">
+      </form>
+    </li>
+    <li>
+      <h3>PUT : Comment 수정 요청</h3>
+      <form id="updateForm">
+        <input type="hidden" name="no" id="updateNo" value="30">
+        title : <input type="text" name="title" id="updateTitle" value="RESTAPI 수정"><br>
+        writer : <input type="text" name="writer" id="updateWriter" value="admin"><br>
+        content : <textarea name="content" id="updateContent">자원의 상태(정보)를 주고</textarea><br>
+        <input type="submit" value="수정 요청">
+      </form>
+    </li>  
+    <li>
+      <h3>DELETE : Comment 삭제 요청</h3>
+      <form id="deleteForm">        
+        <input type="text" name="no" id="deleteNo" value="17"><br>
+        <input type="submit" value="삭제 요청">
+      </form>
+    </li>        
+  </ul>
+</body>
+</html>
