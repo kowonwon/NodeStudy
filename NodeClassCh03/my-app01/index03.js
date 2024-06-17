@@ -1,5 +1,4 @@
 // Rest API
-
 const express = require('express');
 const url = require('url');
 
@@ -39,7 +38,7 @@ app.post("/comments", (req, res) => {
   console.log(req.body);
   const {title, writer, content} = req.body;
 
-  req.json({title: title, writer: writer, content: content});
+  res.json({title: title, writer: writer, content: content});
   // 일종의 comment 쓰기 요청...
 
   app.put("/comments", (req, res) => {
@@ -48,6 +47,18 @@ app.post("/comments", (req, res) => {
 
     res.json({no: no, title: title, writer: writer, content: content, update: "OK"});
   })
+
+  app.delete("/comments", (req, res) => {
+    const no = req.body.no;
+    console.log(no);
+
+    res.json({no: no, delete: "OK"});
+  })
+
+})
+
+app.all("/all", (req, res) => {
+  res.json({url: "/all", msg: "OK"});
 })
 
 app.listen(port, () => {

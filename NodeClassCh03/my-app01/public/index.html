@@ -9,6 +9,7 @@
       padding: 3px; margin: 3px;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <h1>REST(Representational State Transfer) API 요청</h1>  
@@ -51,18 +52,132 @@
     </li>  
     <li>
       <h3>DELETE : Comment 삭제 요청</h3>
-      <form id="deleteForm">        
+      <form id="deleteForm">
         <input type="text" name="no" id="deleteNo" value="17"><br>
         <input type="submit" value="삭제 요청">
       </form>
-    </li>        
+    </li>
   </ul>
 
   <script>
+    const deleteForm = document.querySelector("#deleteForm");
+    deleteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const no = document.querySelector("#deleteNo").value;
+
+      const options = {
+        method: "DELETE",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: `no=${no}`
+      }
+
+      // http://localhost:3000/comments (post방식으로 보냄)
+      fetch("comments", options)
+        .then(res => res.json())
+        .then(resObj => {
+          console.log(resObj);
+          const tag = `<ul>
+                        <li>no: ${resObj.no}</li>
+                        <li>delete: ${resObj.delete}</li>
+                      </ul>`;
+          const result = document.querySelector("#result");
+          result.innerHTML = tag;
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          console.log("요청 완료");
+        });
+    })
+
+    const updateForm = document.querySelector("#updateForm");
+    updateForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const no = document.querySelector("#updateNo").value;
+      const title = document.querySelector("#updateTitle").value;
+      const writer = document.querySelector("#updateWriter").value;
+      const content = document.querySelector("#updateContent").value;
+
+      const options = {
+        method: "PUT",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: `no=${no}&title=${title}&writer=${writer}&content=${content}`
+      }
+
+      // http://localhost:3000/comments (post방식으로 보냄)
+      fetch("comments", options)
+        .then((res) => res.json())
+        .then((resObj) => {
+          console.log(resObj);
+          const tag = `<ul>
+                        <li>no: ${resObj.no}</li>
+                        <li>title: ${resObj.title}</li>
+                        <li>writer: ${resObj.writer}</li>
+                        <li>content: ${resObj.content}</li>
+                        <li>update: ${resObj.update}</li>
+                      </ul>`;
+          const result = document.querySelector("#result");
+          result.innerHTML = tag;
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          console.log("요청 완료");
+        });
+    })
+
+    const writeForm = document.querySelector("#writeForm");
+    writeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = document.querySelector("#formTitle").value;
+      const writer = document.querySelector("#formWriter").value;
+      const content = document.querySelector("#formContent").value;
+
+      const params = JSON.stringify({
+        title: title,
+        writer: writer,
+        content: content
+      })
+
+      const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: params
+      }
+
+      // http://localhost:3000/comments (post방식으로 보냄)
+      fetch("comments", options)
+        .then((res) => res.json())
+        .then((resObj) => {
+          console.log(resObj);
+          const tag = `<ul>
+                        <li>title: ${resObj.title}</li>
+                        <li>writer: ${resObj.writer}</li>
+                        <li>content: ${resObj.content}</li>
+                      </ul>`;
+          const result = document.querySelector("#result");
+          result.innerHTML = tag;
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          console.log("요청 완료");
+        });
+    })
+
     const commentForm = document.querySelector("#commentForm");
     commentForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      async function process(no, pageNum, result) {
+        const res = await axios(`comments/${no}/${pageNum}`);
+        // const resObj = await res.json();
+        console.log(res);
+
+        const tag = `<ul>
+                      <li>no: ${res.data.no}</li>
+                      <li>pageNum: ${res.data.pageNum}</li>
+                    </ul>`;
+        result.innerHTML = tag;
+      }
+      /*
       async function process(no, pageNum, result) {
         const res = await fetch(`comments/${no}/${pageNum}`);
         const resObj = await res.json();
@@ -74,6 +189,7 @@
                     </ul>`;
         result.innerHTML = tag;
       }
+      */
 
       const pageNum = document.querySelector("#formPageNum").value;
       const no = document.querySelector("#formNo").value;
@@ -91,6 +207,17 @@
       const params = `?page-num=${pageNum}&keyword=${keyword}`;
 
       // http://localhost:3000/commetns/?page-num=3&keyword=REST API
+      axios.get("comments" + params)
+        .then(resObj => {
+          console.log(resObj);
+          const tag = `<ul>
+                        <li>pageNum: ${resObj.data.pageNum}</li>
+                        <li>keyword: ${resObj.data.keyword}</li>
+                      </ul>`;
+          const result = document.querySelector("#result");
+          result.innerHTML = tag;
+        });
+      /*
       fetch("comments" + params)
         .then(res => res.json())
         .then(resObj => {
@@ -106,6 +233,7 @@
         .finally(() => {
           console.log("요청 완료");
         });
+        */
     })
   </script>
 </body>
